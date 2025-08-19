@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local Store</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>🛒 Local Store</h1>
+  <a href="/cart">View Cart ( <%= cart.length %> )</a>
+  <div class="products">
+    <% products.forEach(p => { %>
+      <div class="product">
+        <img src="<%= p.image %>" width="150">
+        <h3><%= p.name %></h3>
+        <p><%= p.description %></p>
+        <strong>₹<%= p.price %></strong>
+        <form action="/add-to-cart" method="POST">
+          <input type="hidden" name="id" value="<%= p.id %>">
+          <input type="hidden" name="name" value="<%= p.name %>">
+          <input type="hidden" name="price" value="<%= p.price %>">
+          <button type="submit">Add to Cart</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

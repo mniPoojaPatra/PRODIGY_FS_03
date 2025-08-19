@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>🛍 Your Cart</h1>
+  <a href="/">⬅ Back to Store</a>
+  <br><br>
+
+  <% if (cart.length === 0) { %>
+    <p>No items in cart.</p>
+  <% } else { %>
+    <ul>
+      <% cart.forEach((c, i) => { %>
+        <li>
+          <%= c.name %> - ₹<%= c.price %>
+          <form action="/remove-from-cart" method="POST" style="display:inline;">
+            <input type="hidden" name="index" value="<%= i %>">
+            <button type="submit" class="remove-btn">❌ Remove</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+    <a href="/checkout">Proceed to Checkout</a>
+  <% } %>
+</body>
+</html>
